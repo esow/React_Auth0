@@ -12,9 +12,14 @@ class FoodJokes extends Component {
   }
 
   getValueData() {
-    getValues().then((jokes) => {
-      this.setState({ jokes });
-    });
+    var that = this;
+    fetch("http://localhost:51039/api/values").then(function(response) {
+      return response.json();
+    }).then(function(json) {
+      that.setState({
+        jokes: json
+      })
+    })
   }
 
   componentDidMount() {
@@ -31,13 +36,13 @@ class FoodJokes extends Component {
         <hr/>
 
         { jokes.map((joke, index) => (
-              <div className="col-sm-6" key={index}>
-                <div className="panel panel-primary">
+          <div className="col-sm-6" key={index}>
+                <div className="panel panel-danger">
                   <div className="panel-heading">
-                    <h3 className="panel-title"> <span className="btn">#{ joke.id }</span></h3>
+                    <h3 className="panel-title"><span className="btn">{ joke }</span></h3>
                   </div>
                   <div className="panel-body">
-                    <p> { joke.joke } </p>
+                    <p> { joke } </p>
                   </div>
                 </div>
               </div>

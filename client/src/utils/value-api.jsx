@@ -1,12 +1,10 @@
-const BASE_URL = 'http://localhost:51039';
-
 
 export function getValues() {
-    const url = `${BASE_URL}/api/values`;
-    return fetch(url, { mode: 'cors'}).then(response => response.data);
+    let data = fetch("http://localhost:51039/api/values").then(function(response){
+        return response.json();
+    });
 }
 
 export function getAdminValues() {
-    const url = `${BASE_URL}/api/adminvalues`;
-    return fetch(url, { mode: 'cors'}).then(response => response.data);
+    let data = fetch("http://localhost:51039/api/values", ).then(response => response.data);
 }
